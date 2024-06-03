@@ -337,6 +337,7 @@ def fit_component(keyvalue):
     with col2: 
         st.session_state.percFit_core = st.slider('', min_value=0, max_value=100, value=int(st.session_state.percFit_current + (100 - st.session_state.percFit_current) * .4), key = f"core_fitPerc_{keyvalue}", label_visibility="collapsed")
         st.session_state.qualityCalls_core = st.session_state.calls_core * st.session_state.percFit_core/100
+    st.session_state.calls_current = st.session_state.newBookings_current * st.session_state.percCall_current / 100
     generate_new_quality_calls_chart(st.session_state.calls_current, st.session_state.percFit_current, st.session_state.calls_business, st.session_state.percFit_business, st.session_state.calls_core, st.session_state.percFit_core)
 
 def customers_component(keyvalue):
@@ -353,7 +354,9 @@ def customers_component(keyvalue):
     with col2: 
         st.session_state.percClose_core = st.slider('', min_value=0, max_value=100, value=int(st.session_state.percClose_current + (100 - st.session_state.percClose_current) * .2), key = f"core_closePerc_{keyvalue}", label_visibility="collapsed")
         st.session_state.newCustomers_core = st.session_state.qualityCalls_core * st.session_state.percClose_core/100
-    generate_new_customers_chart(st.session_state.newCustomers_current, st.session_state.percClose_current, st.session_state.newCustomers_business, st.session_state.percClose_business, st.session_state.newCustomers_core, st.session_state.percClose_core)
+    st.session_state.qualityCalls_current = st.session_state.calls_current * st.session_state.percFit_current / 100
+    st.session_state.newCustomers_current = st.session_state.qualityCalls_current * st.session_state.percClose_current / 100
+    generate_new_customers_chart(st.session_state.qualityCalls_current, st.session_state.percClose_current, st.session_state.qualityCalls_business, st.session_state.percClose_business, st.session_state.qualityCalls_core, st.session_state.percClose_core)
 
 def revenue_component(keyvalue):
     st.subheader('Revenue from New Customers')
