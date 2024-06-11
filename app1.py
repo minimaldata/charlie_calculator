@@ -449,7 +449,7 @@ def customers_component(keyvalue):
     generate_new_customers_chart(st.session_state.qualityCalls_current, st.session_state.percClose_current, st.session_state.qualityCalls_business, st.session_state.percClose_business, st.session_state.qualityCalls_core, st.session_state.percClose_core)
 
 def revenue_component(keyvalue):
-    st.subheader('New Customer Revenue (12 mos)')
+    st.subheader('New Customer Revenue')
     col1,col2 = st.columns(2)
     with col1:
         st.write('Conservative')
